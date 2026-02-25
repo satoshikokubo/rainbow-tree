@@ -1,0 +1,10 @@
+{
+	"id": "rainbow-tree",
+	"name": "Rainbow Tree",
+	"version": "0.1.0",
+	"minAppVersion": "1.5.0",
+	"description": "Automatically colorize file explorer with layered indent bars for each folder depth.",
+	"author": "",
+	"authorUrl": "",
+	"isDesktopOnly": false
+}

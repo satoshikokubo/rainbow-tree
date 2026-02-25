@@ -1,0 +1,46 @@
+/* ============================================================
+   Rainbow Tree – Color Bar Styles
+   ============================================================ */
+
+/* バーコンテナ: tree-item-selfの左端に横並び配置 */
+.rainbow-tree-bars {
+	display: flex;
+	flex-direction: row;
+	align-items: stretch;
+	position: absolute;
+	left: 0;
+	top: 0;
+	bottom: 0;
+	z-index: 1;
+	pointer-events: none;
+	gap: var(--rainbow-bar-gap, 0px);
+}
+
+/* 個別バー */
+.rainbow-tree-bar {
+	display: block;
+	width: var(--rainbow-bar-width, 4px);
+	height: 100%;
+	background-color: var(--rainbow-color, #888);
+	opacity: var(--rainbow-bar-opacity, 0.85);
+	flex-shrink: 0;
+}
+
+/* tree-item-self のパディング調整（バーの幅分を確保） */
+.nav-files-container .tree-item-self {
+	position: relative;
+}
+
+/* フェードインアニメーション */
+.rainbow-tree-animate {
+	animation: rainbow-tree-fade-in 0.2s ease-out;
+}
+
+@keyframes rainbow-tree-fade-in {
+	from {
+		opacity: 0;
+	}
+	to {
+		opacity: 1;
+	}
+}
