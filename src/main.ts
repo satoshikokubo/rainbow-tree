@@ -10,6 +10,7 @@ export default class RainbowTreePlugin extends Plugin {
 
 	async onload(): Promise<void> {
 		await this.loadSettings();
+		this.applyBodyClasses();
 
 		// 設定タブ登録
 		this.addSettingTab(new RainbowTreeSettingTab(this.app, this));
@@ -59,10 +60,15 @@ export default class RainbowTreePlugin extends Plugin {
 
 	async saveSettings(): Promise<void> {
 		await this.saveData(this.settings);
+		this.applyBodyClasses();
 		// 設定変更時にエンジンをリフレッシュ
 		if (this.engine) {
 			this.engine.refresh();
 		}
+	}
+
+	private applyBodyClasses(): void {
+		document.body.classList.toggle("rainbow-tree-compact-rows", !!this.settings.compactRows);
 	}
 
 	private startEngine(): void {

@@ -1,6 +1,6 @@
 {
 	"name": "rainbow-tree",
-	"version": "0.1.0",
+	"version": "1.0.0",
 	"description": "Automatically colorize file explorer with layered indent bars for each folder depth.",
 	"main": "main.js",
 	"scripts": {

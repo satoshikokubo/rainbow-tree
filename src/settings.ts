@@ -26,12 +26,39 @@ export class RainbowTreeSettingTab extends PluginSettingTab {
 				})
 			);
 
-		// ─── Color Palette ───
+		
+		// ─── Color Assignment Mode ───
+		new Setting(containerEl)
+			.setName(t.settingColorMode)
+			.setDesc(t.settingColorModeDesc)
+			.addDropdown((dd) => {
+				dd.addOption("stable", t.settingColorModeStable);
+				dd.addOption("dynamic", t.settingColorModeDynamic);
+				dd.setValue(this.plugin.settings.colorMode ?? "stable");
+				dd.onChange(async (value) => {
+					this.plugin.settings.colorMode = value as "stable" | "dynamic";
+					await this.plugin.saveSettings();
+				});
+			});
+
+// ─── Color Palette ───
 		containerEl.createEl("h3", { text: t.settingPalette });
 		containerEl.createEl("p", {
 			text: t.settingPaletteDesc,
 			cls: "setting-item-description",
 		});
+
+		// Dark/Light ヘッダー行
+		const headerRow = containerEl.createDiv({ cls: "setting-item" });
+		const headerInfo = headerRow.createDiv({ cls: "setting-item-info" });
+		headerInfo.createEl("div", { text: "", cls: "setting-item-name" });
+		const headerControl = headerRow.createDiv({ cls: "setting-item-control" });
+		headerControl.style.gap = "8px";
+		headerControl.style.fontSize = "0.8em";
+		headerControl.style.opacity = "0.6";
+		headerControl.createSpan({ text: t.settingDarkColor });
+		headerControl.createSpan({ text: t.settingLightColor });
+		headerControl.createSpan({ text: "" }); // trash spacer
 
 		this.plugin.settings.palette.forEach((color, index) => {
 			this.renderPaletteItem(containerEl, color, index);
@@ -70,7 +97,7 @@ export class RainbowTreeSettingTab extends PluginSettingTab {
 			.setDesc(t.settingBarWidthDesc)
 			.addSlider((slider) =>
 				slider
-					.setLimits(2, 8, 1)
+					.setLimits(2, 16, 1)
 					.setValue(this.plugin.settings.barWidth)
 					.setDynamicTooltip()
 					.onChange(async (value) => {
@@ -116,6 +143,16 @@ export class RainbowTreeSettingTab extends PluginSettingTab {
 			.addToggle((toggle) =>
 				toggle.setValue(this.plugin.settings.animateOnExpand).onChange(async (value) => {
 					this.plugin.settings.animateOnExpand = value;
+					await this.plugin.saveSettings();
+				})
+			);
+
+		new Setting(containerEl)
+			.setName(t.settingCompactRows)
+			.setDesc(t.settingCompactRowsDesc)
+			.addToggle((toggle) =>
+				toggle.setValue(this.plugin.settings.compactRows).onChange(async (value) => {
+					this.plugin.settings.compactRows = value;
 					await this.plugin.saveSettings();
 				})
 			);

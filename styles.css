@@ -2,45 +2,78 @@
    Rainbow Tree – Color Bar Styles
    ============================================================ */
 
-/* バーコンテナ: tree-item-selfの左端に横並び配置 */
+/*
+  IMPORTANT:
+  Obsidianのファイルエクスプローラは仮想スクロール（spacer要素）を使うことがあります。
+  行の高さ（margin/padding/line-height等）を強制変更すると spacer の計算が崩れて
+  「巨大な隙間」が発生するため、本プラグインのCSSは“縦方向のサイズ”に干渉しない。
+*/
+
+/* --- Obsidianデフォルトのインデントガイド（縦線）のみ非表示 --- */
+.nav-files-container .tree-item-children {
+	border-left: none !important;
+}
+
+.nav-files-container .tree-item .tree-item-children::before {
+	display: none !important;
+}
+
+/* --- tree-item-self の基本設定（バーの絶対配置のため） --- */
+.nav-files-container .tree-item-self {
+	position: relative;
+	overflow: hidden; /* barのはみ出し/横線対策 */
+}
+
+/* Optional: compact row spacing (theme override) */
+body.rainbow-tree-compact-rows .nav-files-container .tree-item-self.rainbow-tree-colored {
+	margin-block: 0 !important;
+	border-radius: 0 !important;
+}
+
+/* --- 左端カラーバー（階層の積層表示） --- */
 .rainbow-tree-bars {
 	display: flex;
 	flex-direction: row;
 	align-items: stretch;
 	position: absolute;
 	left: 0;
+	/* 余白（行間）がある場合に横線が出ることがあるため、基本はぴったり合わせる */
 	top: 0;
 	bottom: 0;
 	z-index: 1;
 	pointer-events: none;
 	gap: var(--rainbow-bar-gap, 0px);
+
+	/* スクロール時のチラつき軽減 */
+	will-change: opacity, transform;
+	transform: translateZ(0);
+	backface-visibility: hidden;
+	contain: paint;
 }
 
-/* 個別バー */
+/* 行間を詰めたときはシームが目立ちやすいので、少しだけオーバーラップさせる */
+body.rainbow-tree-compact-rows .rainbow-tree-bars {
+	top: -1px;
+	bottom: -1px;
+}
+
 .rainbow-tree-bar {
 	display: block;
-	width: var(--rainbow-bar-width, 4px);
+	width: var(--rainbow-bar-width, 8px);
 	height: 100%;
 	background-color: var(--rainbow-color, #888);
-	opacity: var(--rainbow-bar-opacity, 0.85);
+	opacity: 1;
 	flex-shrink: 0;
+	transform: translateZ(0);
+	backface-visibility: hidden;
 }
 
-/* tree-item-self のパディング調整（バーの幅分を確保） */
-.nav-files-container .tree-item-self {
-	position: relative;
-}
-
-/* フェードインアニメーション */
+/* --- フェードインアニメーション --- */
 .rainbow-tree-animate {
-	animation: rainbow-tree-fade-in 0.2s ease-out;
+	animation: rainbow-tree-fade-in 0.15s ease-out;
 }
 
 @keyframes rainbow-tree-fade-in {
-	from {
-		opacity: 0;
-	}
-	to {
-		opacity: 1;
-	}
+	from { opacity: 0; }
+	to { opacity: 1; }
 }

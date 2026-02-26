@@ -25,8 +25,14 @@ interface Dict {
 	settingBarGapDesc: string;
 	settingEnabled: string;
 	settingEnabledDesc: string;
+	settingColorMode: string;
+	settingColorModeDesc: string;
+	settingColorModeStable: string;
+	settingColorModeDynamic: string;
 	settingAnimate: string;
 	settingAnimateDesc: string;
+	settingCompactRows: string;
+	settingCompactRowsDesc: string;
 	settingResetOverrides: string;
 	settingResetOverridesDesc: string;
 	settingColorName: string;
@@ -58,8 +64,15 @@ const ja: Dict = {
 	settingBarGapDesc: "カラーバー間の隙間（px）。",
 	settingEnabled: "Rainbow Treeを有効化",
 	settingEnabledDesc: "ファイルエクスプローラーにカラーバーを表示します。",
+	settingColorMode: "色割り当てモード",
+	settingColorModeDesc: "色を固定するか、表示上の隣接行の重複を最小化するかを選びます。",
+	settingColorModeStable: "安定（固定）",
+	settingColorModeDynamic: "動的（隣接最適化）",
 	settingAnimate: "展開アニメーション",
 	settingAnimateDesc: "フォルダ展開時にフェードインアニメーションを適用します。",
+	settingCompactRows: "行間を詰める",
+	settingCompactRowsDesc:
+		"ファイルエクスプローラーの各行の隙間を詰めます（テーマの余白設定を上書きします）。",
 	settingResetOverrides: "手動カラー設定をリセット",
 	settingResetOverridesDesc: "フォルダごとに手動設定した色をすべてクリアします。",
 	settingColorName: "色の名前",
@@ -89,9 +102,16 @@ const en: Dict = {
 	settingBarGapDesc: "Gap between color bars (px).",
 	settingEnabled: "Enable Rainbow Tree",
 	settingEnabledDesc: "Show color bars in the file explorer.",
-	settingAnimate: "Expand Animation",
+	settingColorMode: "Color assignment mode",
+	settingColorModeDesc: "Choose whether colors stay stable or are optimized to reduce adjacent duplicates.",
+	settingColorModeStable: "Stable (fixed)",
+	settingColorModeDynamic: "Dynamic (adjacency optimized)",
+	settingAnimate: "Expand animation",
 	settingAnimateDesc: "Apply fade-in animation when expanding folders.",
-	settingResetOverrides: "Reset Folder Color Overrides",
+	settingCompactRows: "Compact row spacing",
+	settingCompactRowsDesc:
+		"Reduce vertical gaps between rows in the file explorer (overrides some theme spacing).",
+	settingResetOverrides: "Reset folder color overrides",
 	settingResetOverridesDesc: "Clear all manually set folder colors.",
 	settingColorName: "Color name",
 	settingDarkColor: "Dark",

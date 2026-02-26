@@ -1,3 +1,6 @@
+/** 色割り当てモード */
+export type ColorMode = "stable" | "dynamic";
+
 /** 個別パレットカラー */
 export interface PaletteColor {
 	name: string;
@@ -10,7 +13,7 @@ export interface RainbowTreeSettings {
 	/** カラーパレット */
 	palette: PaletteColor[];
 
-	/** バー幅 px (2〜8) */
+	/** バー幅 px (2〜16) */
 	barWidth: number;
 
 	/** バー不透明度 (0.0〜1.0) */
@@ -22,30 +25,39 @@ export interface RainbowTreeSettings {
 	/** プラグイン有効/無効 */
 	enabled: boolean;
 
+	/** 色割り当てモード */
+	colorMode: ColorMode;
+
 	/** 展開時フェードインアニメーション */
 	animateOnExpand: boolean;
+
+	/** 行間（ツリーの各行の隙間）を詰める */
+	compactRows: boolean;
 
 	/** フォルダパス → 手動指定色 (hex) */
 	folderColors: Record<string, string>;
 }
 
-/** デフォルトパレット（6色） */
+/** デフォルトパレット（7色・虹順・パステル調） */
 export const DEFAULT_PALETTE: PaletteColor[] = [
-	{ name: "Red",    dark: "#E53935", light: "#C62828" },
-	{ name: "Green",  dark: "#43A047", light: "#2E7D32" },
-	{ name: "Blue",   dark: "#1E88E5", light: "#1565C0" },
-	{ name: "Orange", dark: "#FB8C00", light: "#E65100" },
-	{ name: "Purple", dark: "#8E24AA", light: "#6A1B9A" },
-	{ name: "Cyan",   dark: "#00ACC1", light: "#00838F" },
+	{ name: "Red",    dark: "#C87070", light: "#E8A0A0" },
+	{ name: "Orange", dark: "#C89860", light: "#E8C090" },
+	{ name: "Yellow", dark: "#B8B060", light: "#E0D890" },
+	{ name: "Green",  dark: "#60A878", light: "#90D0A8" },
+	{ name: "Blue",   dark: "#6098C0", light: "#90C0E0" },
+	{ name: "Indigo", dark: "#7878B8", light: "#A0A0D8" },
+	{ name: "Violet", dark: "#A878C0", light: "#D0A8E0" },
 ];
 
 /** デフォルト設定 */
 export const DEFAULT_SETTINGS: RainbowTreeSettings = {
 	palette: [...DEFAULT_PALETTE],
-	barWidth: 4,
-	barOpacity: 0.85,
-	barGap: 0,
+	barWidth: 16,
+	barOpacity: 0.25,
+	barGap: 3,
 	enabled: true,
+	colorMode: "stable",
 	animateOnExpand: true,
+	compactRows: false,
 	folderColors: {},
 };
