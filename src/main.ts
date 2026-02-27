@@ -87,19 +87,17 @@ export default class RainbowTreePlugin extends Plugin {
 	 * カラーピッカーをシンプルなプロンプトで表示
 	 * （Phase 2でモーダルに差し替え予定）
 	 */
-	private async showColorPicker(folderPath: string): Promise<void> {
+	private showColorPicker(folderPath: string): void {
 		// 暫定: input[type=color] を使った簡易ピッカー
 		const input = document.createElement("input");
 		input.type = "color";
 		input.value = this.settings.folderColors[folderPath] || "#E53935";
-		input.style.position = "fixed";
-		input.style.opacity = "0";
-		input.style.pointerEvents = "none";
+		input.addClass("rainbow-tree-hidden-picker");
 		document.body.appendChild(input);
 
-		input.addEventListener("change", async () => {
+		input.addEventListener("change", () => {
 			this.settings.folderColors[folderPath] = input.value;
-			await this.saveSettings();
+			void this.saveSettings();
 			input.remove();
 		});
 

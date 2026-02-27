@@ -26,7 +26,6 @@ export class RainbowTreeSettingTab extends PluginSettingTab {
 				})
 			);
 
-		
 		// ─── Color Assignment Mode ───
 		new Setting(containerEl)
 			.setName(t.settingColorMode)
@@ -41,21 +40,17 @@ export class RainbowTreeSettingTab extends PluginSettingTab {
 				});
 			});
 
-// ─── Color Palette ───
-		containerEl.createEl("h3", { text: t.settingPalette });
-		containerEl.createEl("p", {
-			text: t.settingPaletteDesc,
-			cls: "setting-item-description",
-		});
+		// ─── Color Palette ───
+		new Setting(containerEl)
+			.setName(t.settingPalette)
+			.setDesc(t.settingPaletteDesc)
+			.setHeading();
 
 		// Dark/Light ヘッダー行
 		const headerRow = containerEl.createDiv({ cls: "setting-item" });
 		const headerInfo = headerRow.createDiv({ cls: "setting-item-info" });
 		headerInfo.createEl("div", { text: "", cls: "setting-item-name" });
-		const headerControl = headerRow.createDiv({ cls: "setting-item-control" });
-		headerControl.style.gap = "8px";
-		headerControl.style.fontSize = "0.8em";
-		headerControl.style.opacity = "0.6";
+		const headerControl = headerRow.createDiv({ cls: "setting-item-control rainbow-tree-palette-header" });
 		headerControl.createSpan({ text: t.settingDarkColor });
 		headerControl.createSpan({ text: t.settingLightColor });
 		headerControl.createSpan({ text: "" }); // trash spacer
@@ -90,7 +85,9 @@ export class RainbowTreeSettingTab extends PluginSettingTab {
 		);
 
 		// ─── Bar Style ───
-		containerEl.createEl("h3", { text: "Bar Style" });
+		new Setting(containerEl)
+			.setName(t.settingBarStyle)
+			.setHeading();
 
 		new Setting(containerEl)
 			.setName(t.settingBarWidth)
@@ -135,7 +132,9 @@ export class RainbowTreeSettingTab extends PluginSettingTab {
 			);
 
 		// ─── Behavior ───
-		containerEl.createEl("h3", { text: "Behavior" });
+		new Setting(containerEl)
+			.setName(t.settingBehavior)
+			.setHeading();
 
 		new Setting(containerEl)
 			.setName(t.settingAnimate)
@@ -158,7 +157,9 @@ export class RainbowTreeSettingTab extends PluginSettingTab {
 			);
 
 		// ─── Advanced ───
-		containerEl.createEl("h3", { text: "Advanced" });
+		new Setting(containerEl)
+			.setName(t.settingAdvanced)
+			.setHeading();
 
 		const overrideCount = Object.keys(this.plugin.settings.folderColors).length;
 		new Setting(containerEl)
@@ -168,7 +169,7 @@ export class RainbowTreeSettingTab extends PluginSettingTab {
 			)
 			.addButton((btn) =>
 				btn
-					.setButtonText("Reset")
+					.setButtonText(t.settingReset)
 					.setWarning()
 					.setDisabled(overrideCount === 0)
 					.onClick(async () => {
@@ -187,7 +188,7 @@ export class RainbowTreeSettingTab extends PluginSettingTab {
 		color: PaletteColor,
 		index: number,
 	): void {
-		const setting = new Setting(containerEl)
+		new Setting(containerEl)
 			.setName(color.name)
 			.addColorPicker((picker) =>
 				picker.setValue(color.dark).onChange(async (value) => {
@@ -202,28 +203,11 @@ export class RainbowTreeSettingTab extends PluginSettingTab {
 				})
 			)
 			.addExtraButton((btn) =>
-				btn.setIcon("trash-2").setTooltip("Delete").onClick(async () => {
+				btn.setIcon("trash-2").setTooltip(t.settingDelete).onClick(async () => {
 					this.plugin.settings.palette.splice(index, 1);
 					await this.plugin.saveSettings();
 					this.display();
 				})
 			);
-
-		// ラベル補足（Dark / Light）
-		const pickers = setting.controlEl.querySelectorAll(".picker-input-wrapper");
-		if (pickers[0]) {
-			const labelD = document.createElement("span");
-			labelD.textContent = ` ${t.settingDarkColor} `;
-			labelD.style.fontSize = "0.8em";
-			labelD.style.opacity = "0.7";
-			pickers[0].insertBefore(labelD, pickers[0].firstChild);
-		}
-		if (pickers[1]) {
-			const labelL = document.createElement("span");
-			labelL.textContent = ` ${t.settingLightColor} `;
-			labelL.style.fontSize = "0.8em";
-			labelL.style.opacity = "0.7";
-			pickers[1].insertBefore(labelL, pickers[1].firstChild);
-		}
 	}
 }

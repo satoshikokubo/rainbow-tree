@@ -68,6 +68,20 @@ body.rainbow-tree-compact-rows .rainbow-tree-bars {
 	backface-visibility: hidden;
 }
 
+/* --- Hidden color picker (off-screen input) --- */
+.rainbow-tree-hidden-picker {
+	position: fixed;
+	opacity: 0;
+	pointer-events: none;
+}
+
+/* --- Settings: palette header --- */
+.rainbow-tree-palette-header {
+	gap: 8px;
+	font-size: 0.8em;
+	opacity: 0.6;
+}
+
 /* --- フェードインアニメーション --- */
 .rainbow-tree-animate {
 	animation: rainbow-tree-fade-in 0.15s ease-out;

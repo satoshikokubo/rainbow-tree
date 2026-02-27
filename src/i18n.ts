@@ -17,6 +17,7 @@ interface Dict {
 	settingPaletteDesc: string;
 	settingAddColor: string;
 	settingResetPalette: string;
+	settingBarStyle: string;
 	settingBarWidth: string;
 	settingBarWidthDesc: string;
 	settingBarOpacity: string;
@@ -31,10 +32,14 @@ interface Dict {
 	settingColorModeDynamic: string;
 	settingAnimate: string;
 	settingAnimateDesc: string;
+	settingBehavior: string;
+	settingAdvanced: string;
 	settingCompactRows: string;
 	settingCompactRowsDesc: string;
 	settingResetOverrides: string;
 	settingResetOverridesDesc: string;
+	settingReset: string;
+	settingDelete: string;
 	settingColorName: string;
 	settingDarkColor: string;
 	settingLightColor: string;
@@ -56,6 +61,7 @@ const ja: Dict = {
 	settingPaletteDesc: "階層バーに使用する色を管理します。",
 	settingAddColor: "色を追加",
 	settingResetPalette: "デフォルトに戻す",
+	settingBarStyle: "バースタイル",
 	settingBarWidth: "バー幅",
 	settingBarWidthDesc: "カラーバーの幅（px）。",
 	settingBarOpacity: "バー不透明度",
@@ -70,11 +76,15 @@ const ja: Dict = {
 	settingColorModeDynamic: "動的（隣接最適化）",
 	settingAnimate: "展開アニメーション",
 	settingAnimateDesc: "フォルダ展開時にフェードインアニメーションを適用します。",
+	settingBehavior: "動作",
+	settingAdvanced: "詳細",
 	settingCompactRows: "行間を詰める",
 	settingCompactRowsDesc:
 		"ファイルエクスプローラーの各行の隙間を詰めます（テーマの余白設定を上書きします）。",
 	settingResetOverrides: "手動カラー設定をリセット",
 	settingResetOverridesDesc: "フォルダごとに手動設定した色をすべてクリアします。",
+	settingReset: "リセット",
+	settingDelete: "削除",
 	settingColorName: "色の名前",
 	settingDarkColor: "ダーク",
 	settingLightColor: "ライト",
@@ -89,16 +99,17 @@ const ja: Dict = {
 };
 
 const en: Dict = {
-	settingHeading: "Rainbow Tree Settings",
-	settingPalette: "Color Palette",
+	settingHeading: "Rainbow Tree settings",
+	settingPalette: "Color palette",
 	settingPaletteDesc: "Manage the colors used for indent bars.",
-	settingAddColor: "Add Color",
-	settingResetPalette: "Reset to Default",
-	settingBarWidth: "Bar Width",
+	settingAddColor: "Add color",
+	settingResetPalette: "Reset to default",
+	settingBarStyle: "Bar style",
+	settingBarWidth: "Bar width",
 	settingBarWidthDesc: "Width of the color bars (px).",
-	settingBarOpacity: "Bar Opacity",
+	settingBarOpacity: "Bar opacity",
 	settingBarOpacityDesc: "Opacity of the color bars.",
-	settingBarGap: "Bar Gap",
+	settingBarGap: "Bar gap",
 	settingBarGapDesc: "Gap between color bars (px).",
 	settingEnabled: "Enable Rainbow Tree",
 	settingEnabledDesc: "Show color bars in the file explorer.",
@@ -108,20 +119,24 @@ const en: Dict = {
 	settingColorModeDynamic: "Dynamic (adjacency optimized)",
 	settingAnimate: "Expand animation",
 	settingAnimateDesc: "Apply fade-in animation when expanding folders.",
+	settingBehavior: "Behavior",
+	settingAdvanced: "Advanced",
 	settingCompactRows: "Compact row spacing",
 	settingCompactRowsDesc:
 		"Reduce vertical gaps between rows in the file explorer (overrides some theme spacing).",
 	settingResetOverrides: "Reset folder color overrides",
 	settingResetOverridesDesc: "Clear all manually set folder colors.",
+	settingReset: "Reset",
+	settingDelete: "Delete",
 	settingColorName: "Color name",
 	settingDarkColor: "Dark",
 	settingLightColor: "Light",
 
-	menuSetColor: "Set Rainbow Color",
-	menuResetColor: "Reset Rainbow Color",
+	menuSetColor: "Set rainbow color",
+	menuResetColor: "Reset rainbow color",
 
 	modalTitle: "Rainbow Tree: Choose a color",
-	modalCustomColor: "Custom Color",
+	modalCustomColor: "Custom color",
 	modalApply: "Apply",
 	modalCancel: "Cancel",
 };

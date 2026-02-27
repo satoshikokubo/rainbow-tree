@@ -92,7 +92,7 @@ export class RainbowEngine {
 	private getFileExplorerContainer(): HTMLElement | null {
 		const leaves = this.app.workspace.getLeavesOfType("file-explorer");
 		if (leaves.length === 0) return null;
-		const nav = leaves[0].view.containerEl.querySelector(".nav-files-container") as HTMLElement | null;
+		const nav = (leaves[0].view.containerEl.querySelector(".nav-files-container")) as HTMLElement | null;
 		if (!nav) return null;
 		if (nav.querySelector(":scope > .tree-item")) return nav;
 		const firstChild = nav.firstElementChild as HTMLElement | null;
@@ -103,7 +103,7 @@ export class RainbowEngine {
 	private getNavFilesContainer(): HTMLElement | null {
 		const leaves = this.app.workspace.getLeavesOfType("file-explorer");
 		if (leaves.length === 0) return null;
-		return leaves[0].view.containerEl.querySelector(".nav-files-container") as HTMLElement | null;
+		return (leaves[0].view.containerEl.querySelector(".nav-files-container")) as HTMLElement | null;
 	}
 
 	private hashToIndex(key: string, mod: number): number {
